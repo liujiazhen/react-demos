@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>调用函数 与 => 符号</title>
+        <script src="../build/react.development.js"></script>
+        <script src="../build/react-dom.development.js"></script>
+        <script src="../build/babel.min.js"></script>
+        <script src="../build/jquery.min.js"></script>
+  </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            class RepoList extends React.Component {
+                constructor() {
+                    super()
+                    this.state = {}
+                }
+                
+                myClickFunction = (myText1) => {
+                    console.log("ok" + myText1)
+                }
+
+                render() {
+                    return <div>
+                        <button onClick={() => this.myClickFunction('111')}>按钮</button>
+                        在React中有自己的一套事件绑定方式
+                    </div>
+                }
+            }
+
+            ReactDOM.render(
+                <RepoList></RepoList>,
+                document.getElementById('example')
+            );
+        </script>
+    </body>
+</html>
