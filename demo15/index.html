@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>绑定文本框和 state 的值</title>
+        <script src="../build/react.development.js"></script>
+        <script src="../build/react-dom.development.js"></script>
+        <script src="../build/babel.min.js"></script>
+        <script src="../build/jquery.min.js"></script>
+  </head>
+    <body>
+        <div id="example"></div>
+        <script type="text/babel">
+            class RepoList extends React.Component {
+                constructor() {
+                    super()
+                    this.state = {
+                        msg: 'liujiazhen'
+                    }
+                }
+                
+                myClickFunction = (myText1) => {
+                    // setState方法，异步运行，想及时获取，在回调函数中获得
+                    // this.setState({设置值}, function(){回调函数});
+                    this.setState({
+                        msg: 6666
+                    })
+                }
+
+                myOnChangeFun = (e) => {
+                    // console.log('变化');
+                    this.setState({
+                        msg: this.refs.myText.value
+                    })
+                }
+
+                render() {
+                    return <div>
+                        <button onClick={() => this.myClickFunction('111')}>按钮</button>
+                        在React中有自己的一套事件绑定方式
+                        <h3>{this.state.msg}</h3>
+                        <input type="text" value={this.state.msg} readOnly />
+                        <input type="text" value={this.state.msg} onChange={(e) => this.myOnChangeFun(e)} ref="myText" />
+                    </div>
+                }
+            }
+
+            ReactDOM.render(
+                <RepoList></RepoList>,
+                document.getElementById('example')
+            );
+        </script>
+    </body>
+</html>
